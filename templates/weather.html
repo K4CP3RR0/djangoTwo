@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informacje pogodowe</title>
+</head>
+<body>
+    <h1>Informacje pogodowe</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="city_name">Podaj miasto:</label>
+        <input type="text" id="city_name" name="city_name">
+        <button type="submit">Pobierz pogodę</button>
+    </form>
+    {% if weather_data %}
+        <h2>{{ weather_data.name }}</h2>
+        <p>Temperatura: {{ weather_data.main.temp }} C</p>
+        <p>Wilgotność: {{ weather_data.main.humidity }} %</p>
+        <p>Ciśnienie: {{ weather_data.main.pressure }} hPa</p>
+        <p>Opis: {{ weather_data.weather.0.description }}</p>
+    {% endif %}
+</body>
+</html>
